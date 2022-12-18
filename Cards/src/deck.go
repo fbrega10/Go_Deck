@@ -1,5 +1,8 @@
 package main
-import "fmt"
+import (
+		"fmt";
+		"strings"
+	)
 
 //typing a new type : deck 	
 type deck[]string
@@ -29,4 +32,18 @@ func (d deck) print(){
 //returns two decks : one from zero to 
 func deal(d deck, handSize int) (deck, deck){
 	return d[:handSize], d[handSize:]
+}
+
+func (d deck) toString() string{
+	// mystring := ""
+	// for _, value := range d{
+	// 	mystring += value
+	// }
+	// return mystring
+	newString := strings.Join([]string(d), ",")
+	// var newString string
+	// for _, value := range myarray{
+	// 	newString += value
+	// }
+	return newString
 }
