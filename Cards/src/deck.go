@@ -29,8 +29,8 @@ func (d deck) print(){
 	}
 }
 
-//this is a function which gets a deck and an int,
-//returns two decks : one from zero to 
+//this is a function which has a deck and an integer as params
+//returns two decks : one from zero to the handsize and from the handsize on 
 func deal(d deck, handSize int) (deck, deck){
 	return d[:handSize], d[handSize:]
 }
@@ -45,6 +45,16 @@ func (d deck) toString() string{
 }
 
 //function to save a deck (converted into a slice of bytes) to the hard drive
-func (d deck) saveToFile(filename string) {
-	os.WriteFile(filename, []byte(d.toString()), 0777)
+func (d deck) saveToFile(filename string) error {
+	return os.WriteFile(filename, []byte(d.toString()), 0777)
+}
+
+func newDeckFromFile (filename string) deck{ 
+	data, err := os.ReadFile(filename)
+	if err != nil{
+		fmt.Println("Error : ", err)
+		os.Exit(1)
+	}
+	data2 := strings.Split(string(data), ",")
+	return deck(data2)
 }

@@ -6,9 +6,12 @@ import "fmt"
 func main() {
 	//start of the program
 	cards := newDeck()
+	filename := "my_new_file" 
 	fmt.Println(cards.toString())
-	cards.saveToFile("my_new_file")
-	// cards.print()	
+	cards.saveToFile(filename)
+	cards2 := newDeckFromFile(filename)
+	fmt.Println("\n\n\nDeck of cards 2 : ")
+	cards2.print()
 	
 	//dealing cards into two decks
 	// greeting := "Hi there"
