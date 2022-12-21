@@ -1,7 +1,8 @@
 package main
 import (
 		"fmt";
-		"strings"
+		"strings";
+		"os"
 	)
 
 //typing a new type : deck 	
@@ -34,16 +35,16 @@ func deal(d deck, handSize int) (deck, deck){
 	return d[:handSize], d[handSize:]
 }
 
+//function that converts a deck (slice of strings) to a string
 func (d deck) toString() string{
-	// mystring := ""
-	// for _, value := range d{
-	// 	mystring += value
-	// }
-	// return mystring
-	newString := strings.Join([]string(d), ",")
+	return strings.Join([]string(d), ",")
 	// var newString string
 	// for _, value := range myarray{
 	// 	newString += value
 	// }
-	return newString
+}
+
+//function to save a deck (converted into a slice of bytes) to the hard drive
+func (d deck) saveToFile(filename string) {
+	os.WriteFile(filename, []byte(d.toString()), 0777)
 }
