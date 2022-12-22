@@ -2,7 +2,8 @@ package main
 import (
 		"fmt";
 		"strings";
-		"os"
+		"os";
+		"math/rand"
 	)
 
 //typing a new type : deck 	
@@ -57,4 +58,20 @@ func newDeckFromFile (filename string) deck{
 	}
 	data2 := strings.Split(string(data), ",")
 	return deck(data2)
+}
+
+func (d deck)shuffleCards() deck{
+	var temp string
+	rnd := int32(len(d))
+	for i:=0; i < int(rnd) ; i++{
+		//random number generator swap
+		gen := rand.Int31n(rnd)
+		if int32(i) == gen{
+			continue
+		}
+		temp = d[gen]
+		d[gen] = d[i]
+		d[i] = temp
+	} 
+	return d
 }

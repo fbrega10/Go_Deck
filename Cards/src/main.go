@@ -13,6 +13,9 @@ func main() {
 	fmt.Println("\n\n\nDeck of cards 2 : ")
 	cards2.print()
 	
+	fmt.Println("\n\n\n\nDeck of cards 2 sorted: ")
+	cards2 = cards2.shuffleCards()
+	cards2.print()
 	//dealing cards into two decks
 	// greeting := "Hi there"
 	// fmt.Println([]byte(greeting))
