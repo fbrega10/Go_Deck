@@ -6,18 +6,17 @@ import "fmt"
 func main() {
 	//start of the program
 	cards := newDeck()
-
-	cards.print()	
+	filename := "my_new_file" 
+	fmt.Println(cards.toString())
+	cards.saveToFile(filename)
+	cards2 := newDeckFromFile(filename)
+	fmt.Println("\n\n\nDeck of cards 2 : ")
+	cards2.print()
 	
+	fmt.Println("\n\n\n\nDeck of cards 2 sorted: ")
+	cards2.shuffleCards()
+	cards2.print()
 	//dealing cards into two decks
-	deck1, deck2 := deal(cards, 3)
-	fmt.Println("\n\nDeck one : ")
-	deck1.print()
-	fmt.Println("\n\nDeck n. two : ")
-	deck2.print()
-
+	// greeting := "Hi there"
+	// fmt.Println([]byte(greeting))
 }
-
-// func newCard() string {
-// 	return "Five of Diamonds"
-// }
