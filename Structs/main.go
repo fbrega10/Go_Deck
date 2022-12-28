@@ -27,8 +27,11 @@ func main(){
 	}
 	fb.printPerson()
 	//pointer to a person --> & = address in memory of the struct
-	fbPointer := &fb
-	fbPointer.updateName("Daniela")
+	// fbPointer := &fb
+	// fbPointer.updateName("Daniela")
+	// Go does not need the reference to the direct address in memory:
+	//even the variable name is enough to get the pointer through the function
+	fb.updateName("Daniela")
 	fb.printPerson()
 	var t2 person
 	t2.printPerson()
