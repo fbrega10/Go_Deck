@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+// import "fmt"
 
 type postingInstructionBatch struct{
 	batch_id string
