@@ -19,15 +19,15 @@ func main() {
 
 	for i, link := range links {
 		go checkLink(link, c)
-		if i == 5{
+		if i == 5 {
 			close(c)
-		} 
+		}
 	}
 	index := 0
 	for element := range c {
 		go fmt.Println(element)
 		index++
-		if index == 5{
+		if index == 5 {
 			close(c)
 		}
 	}
