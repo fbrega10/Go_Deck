@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
 
+	start := time.Now()
 	links := []string{
 		"http://www.google.com",
 		"http://www.amazon.com",
@@ -31,7 +33,8 @@ func main() {
 			close(c)
 		}
 	}
-
+	elapsed := time.Since(start)
+	fmt.Println("execution time : " + elapsed.String())
 }
 
 func checkLink(link string, c chan string) {
