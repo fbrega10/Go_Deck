@@ -24,15 +24,12 @@ func main() {
 
 	c := make(chan string)
 
-	go func() {
-		for i:=0; i < len(links); i++ {
-			checkLink(links[i], c)
-		}
-		close(c)
-	}()
+	for i:= 0; i < len(links); i++{
+		go checkLink(links[i], c)
+	}
 
-	for element := range c {
-		fmt.Println(element)
+	for i:= 0; i < len(links); i++{
+		fmt.Println(<- c)
 	}
 
 	elapsed := time.Since(start)
