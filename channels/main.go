@@ -19,20 +19,17 @@ func main() {
 
 	c := make(chan string)
 
-	for i, link := range links {
-		go checkLink(link, c)
-		if i == 5 {
-			close(c)
-		}
+	go func(){
+	for _, link := range links{
+		checkLink(link, c)
 	}
-	index := 0
-	for element := range c {
-		go fmt.Println(element)
-		index++
-		if index == 5 {
-			close(c)
-		}
+	close(c)
+	}()
+
+	for element := range c{
+		fmt.Println(element)
 	}
+	
 	elapsed := time.Since(start)
 	fmt.Println("execution time : " + elapsed.String())
 }
@@ -40,7 +37,7 @@ func main() {
 func checkLink(link string, c chan string) {
 	_, err := http.Get(link)
 	if err != nil {
-		c <- "server down"
+		c <- "server down: " + link
 		return
 	}
 	c <- "server up: " + link
