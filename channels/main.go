@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"sort"
 	"time"
 )
 
@@ -24,8 +25,8 @@ func main() {
 
 	c := make(chan string)
 
-	for i:= 0; i < len(links); i++{
-		go checkLink(links[i], c)
+	for _, i := range links{
+		go checkLink(i, c)
 	}
 
 	for i:= 0; i < len(links); i++{
